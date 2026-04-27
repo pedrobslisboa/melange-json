@@ -195,6 +195,21 @@ val of_json : Js.Json.t -> t
 val to_json : t -> Js.Json.t
 ```
 
+### Primitives semantics
+
+The following table summarizes the correspondence between OCaml types and JSON values for the primitives:
+
+| OCaml type              | JSON value | Remarks                          | Sample JSON value                 |
+| ----------------------- | ---------- | -------------------------------- | --------------------------------- |
+| `int`, `float`          | Number     |                                  | `1.23`                            |
+| `int64`                 | String     |                                  | `"1234567890"`                    |
+| `bool`                  | Boolean    |                                  | `true`                            |
+| `string`                | String     |                                  | `"foo"`                           |
+| `list`, `array`         | Array      |                                  | `[1, 2, 3]`                       |
+| `'a option`             | Null or 'a |                                  | `null` or `"foo"`                 |
+| `unit`                  | Null       |                                  | `null`                            |
+| `result('a, 'b)`        | Array      |                                  | `["Ok", 1]` or `["Error", "foo"]` |
+
 #### Generating JSON converters from type expressions
 
 You can also generate JSON converters for a type expression using the `to_json`
